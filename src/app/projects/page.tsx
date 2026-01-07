@@ -4,29 +4,8 @@ import Image from 'next/image'
 import { SectionHeading } from '@/components/ui'
 import FadeIn from '@/components/animations/FadeIn'
 import { motion } from 'framer-motion'
+import { PROJECTS } from '@/lib/constants'
 
-const PROJECTS = [
-  {
-    title: 'Modern Apartment',
-    category: 'Residential',
-    image: '/images/projects/project-2.jpg',
-  },
-  {
-    title: 'Luxury Villa',
-    category: 'Architecture',
-    image: '/images/projects/project-1.jpg',
-  },
-  {
-    title: 'Minimal Office',
-    category: 'Commercial',
-    image: '/images/projects/project-3.jpg',
-  },
-  {
-    title: 'Interior Concept',
-    category: 'Interior Design',
-    image: '/images/projects/project-4.jpg',
-  },
-]
 
 export default function ProjectsSection() {
   return (
@@ -36,7 +15,7 @@ export default function ProjectsSection() {
         <FadeIn delay={0.2}>
           <SectionHeading
             preHeading="Portfolio"
-            heading="Naša Galerija Projekata"
+            heading="Naši Glavni Projekti"
             className="mb-16"
           />
         </FadeIn>

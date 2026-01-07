@@ -15,6 +15,29 @@ export const COLORS = {
   dark: '#2d2d2d'
 }
 
+export const PROJECTS = [
+  {
+    title: 'Modern Apartment',
+    category: 'Residential',
+    image: '/images/projects/project-2.jpg',
+  },
+  {
+    title: 'Luxury Villa',
+    category: 'Architecture',
+    image: '/images/projects/project-1.jpg',
+  },
+  {
+    title: 'Minimal Office',
+    category: 'Commercial',
+    image: '/images/projects/project-3.jpg',
+  },
+  {
+    title: 'Interior Concept',
+    category: 'Interior Design',
+    image: '/images/projects/project-4.jpg',
+  },
+]
+
 // Navigation Items
 export const NAV_ITEMS = [
   { label: 'Početna', href: '/' },
