@@ -8,6 +8,7 @@ import { ArrowIcon } from '../icons'
 import { FadeIn, ParallaxImage } from '../animations'
 
 export default function HeroSection() {
+
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-br from-[#f8f5f2] via-[#faf8f6] to-[#f0ebe6]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full py-32">
@@ -37,7 +38,7 @@ export default function HeroSection() {
                 <Button size="lg" icon={<ArrowIcon />}>
                   {HERO.cta.primary}
                 </Button>
-                <Button size="lg" variant="secondary">
+                <Button size="lg" variant="secondary" href="/projects">
                   {HERO.cta.secondary}
                 </Button>
               </div>

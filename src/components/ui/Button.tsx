@@ -1,6 +1,7 @@
 'use client'
 
 import { ButtonHTMLAttributes, ReactNode } from 'react'
+import Link from 'next/link'
 import clsx from 'clsx'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,6 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg'
   icon?: ReactNode
   iconPosition?: 'left' | 'right'
+  href?: string
   children: ReactNode
 }
 
@@ -16,6 +18,7 @@ export default function Button({
   size = 'md',
   icon,
   iconPosition = 'right',
+  href,
   className,
   children,
   ...props
@@ -34,19 +37,32 @@ export default function Button({
     lg: 'px-12 py-5 text-base md:text-lg'
   }
 
-  return (
-    <button
-      className={clsx(
-        baseStyles,
-        variants[variant],
-        sizes[size],
-        className
-      )}
-      {...props}
-    >
+  const classNames = clsx(
+    baseStyles,
+    variants[variant],
+    sizes[size],
+    className
+  )
+
+  const content = (
+    <>
       {icon && iconPosition === 'left' && <span>{icon}</span>}
       {children}
       {icon && iconPosition === 'right' && <span>{icon}</span>}
+    </>
+  )
+
+  if (href) {
+    return (
+      <Link href={href} className={classNames}>
+        {content}
+      </Link>
+    )
+  }
+
+  return (
+    <button className={classNames} {...props}>
+      {content}
     </button>
   )
 }
