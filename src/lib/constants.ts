@@ -18,10 +18,10 @@ export const COLORS = {
 // Navigation Items
 export const NAV_ITEMS = [
   { label: 'Početna', href: '/' },
-  { label: 'Usluge', href: '#usluge' },
-  { label: 'O nama', href: '#o-nama' },
-  { label: 'Proces', href: '#proces' },
-  { label: 'Projekti', href: '/projekti' },
+  { label: 'Usluge', href: '/#usluge' },
+  { label: 'O nama', href: '/#o-nama' },
+  { label: 'Proces', href: '/#proces' },
+  { label: 'Projekti', href: '/projects' },
   { label: 'Galerija', href: '/galerija' },
   { label: 'Kontakt', href: '/kontakt' }
 ]
