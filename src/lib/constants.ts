@@ -45,7 +45,7 @@ export const NAV_ITEMS = [
   { label: 'O nama', href: '/#o-nama' },
   { label: 'Proces', href: '/#proces' },
   { label: 'Projekti', href: '/projects' },
-  { label: 'Galerija', href: '/galerija' },
+  { label: 'Galerija', href: '/gallery' },
   { label: 'Kontakt', href: '/kontakt' }
 ]
 
