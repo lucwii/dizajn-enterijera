@@ -1,6 +1,5 @@
 import HeroSection from '@/components/sections/HeroSection'
 import StatsSection from '@/components/sections/StatsSection'
-import ServicesSection from '@/components/sections/ServicesSection'
 import ProcessSection from '@/components/sections/ProcessSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ContactSection from '@/components/sections/ContactSection'

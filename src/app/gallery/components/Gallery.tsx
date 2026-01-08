@@ -18,7 +18,7 @@ export function Gallery({ images }: GalleryProps) {
               GALERIJA
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-[#2d2d2d] tracking-tight">
-              Naši Projekti
+              Naša Galerija
             </h2>
           </div>
         </FadeIn>

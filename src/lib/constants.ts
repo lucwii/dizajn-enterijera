@@ -71,32 +71,6 @@ export const STATS = [
   { number: 10, label: 'Godina iskustva', suffix: '+' }
 ]
 
-// Services Section
-export const SERVICES = {
-  preHeading: 'ŠTA RADIMO',
-  heading: 'Naše Usluge',
-  items: [
-    {
-      number: '01',
-      icon: 'home',
-      title: 'Stambeni prostori',
-      description: 'Dizajniramo dnevne sobe, spavaće sobe, kuhinje i kupatila koja odražavaju vaš jedinstveni stil i odgovaraju vašim potrebama.'
-    },
-    {
-      number: '02',
-      icon: 'building',
-      title: 'Poslovni prostori',
-      description: 'Kreiramo funkcionalne i elegantne kancelarije, restorane i komercijalne prostore koji ostavljaju trajan utisak na vaše klijente.'
-    },
-    {
-      number: '03',
-      icon: 'brush',
-      title: 'Konsultacije',
-      description: 'Personalizovane konsultacije za boje, nameštaj i dekoraciju vašeg doma. Pomažemo vam da donesete prave odluke za vaš prostor.'
-    }
-  ]
-}
-
 // Process Section
 export const PROCESS = {
   preHeading: 'KAKO RADIMO',
