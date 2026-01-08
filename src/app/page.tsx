@@ -4,13 +4,14 @@ import ServicesSection from '@/components/sections/ServicesSection'
 import ProcessSection from '@/components/sections/ProcessSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ContactSection from '@/components/sections/ContactSection'
+import Services from '@/components/sections/Services'
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <HeroSection />
       <StatsSection />
-      <ServicesSection />
+      <Services />
       <ProcessSection />
       <AboutSection />
       <ContactSection />

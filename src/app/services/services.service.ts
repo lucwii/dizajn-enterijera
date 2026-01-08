@@ -1,7 +1,7 @@
 import { supabaseClient } from "../lib/supabase/client";
 import { Service } from "../types/services";
 
-export const Services = async (): Promise<Service[]> => {
+export const getServices = async (): Promise<Service[]> => {
     const {data, error} = await supabaseClient 
         .from("services")
         .select("*")
