@@ -46,7 +46,7 @@ export const NAV_ITEMS = [
   { label: 'Proces', href: '/#proces' },
   { label: 'Projekti', href: '/projects' },
   { label: 'Galerija', href: '/gallery' },
-  { label: 'Kontakt', href: '/kontakt' }
+  { label: 'Kontakt', href: '/contact' }
 ]
 
 // Hero Section
