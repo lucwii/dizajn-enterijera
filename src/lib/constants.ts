@@ -115,6 +115,66 @@ export const CONTACT = {
   phone: '+381 60 123 4567'
 }
 
+// Working Hours
+export const WORKING_HOURS = [
+  { days: 'Ponedeljak - Petak', hours: '9:00 - 17:00', available: true },
+  { days: 'Subota', hours: 'Po dogovoru', available: true },
+  { days: 'Nedelja', hours: 'Zatvoreno', available: false }
+]
+
+// FAQ Items
+export const FAQ_ITEMS = [
+  {
+    question: 'Koliko traje proces dizajniranja enterijera?',
+    answer: 'Prosečan projekat traje 4-8 nedelja od inicijalne konsultacije do finalne prezentacije. Složeniji projekti mogu trajati i duže, dok manji projekti mogu biti završeni za 2-3 nedelje.'
+  },
+  {
+    question: 'Da li nudite usluge nadzora nad izvođenjem radova?',
+    answer: 'Da, nudimo kompletnu uslugu nadzora kako bismo osigurali da se vaš projekat izvede prema najvišim standardima. To uključuje redovne posete gradilištu i koordinaciju sa izvođačima.'
+  },
+  {
+    question: 'Šta je uključeno u dizajnerski paket?',
+    answer: 'Naš paket uključuje 3D vizualizacije, detaljne tehničke crteže, specifikaciju materijala i nameštaja, konsultacije sa izvođačima i kompletnu podršku tokom realizacije projekta.'
+  },
+  {
+    question: 'Da li radite sa postojećim nameštajem klijenta?',
+    answer: 'Apsolutno! Volimo da integrišemo komade koji imaju sentimentalnu vrednost ili poseban značaj u novi dizajn. To čini prostor još autentičnijim i personalizovanijim.'
+  },
+  {
+    question: 'Kako izgleda početni proces konsultacije?',
+    answer: 'Započinjemo sa detaljnim razgovorom o vašim potrebama, željenoj estetici, stilu života i budžetu. Poseta lokaciji sledi kako bismo razumeli prostor i njegove mogućnosti.'
+  },
+  {
+    question: 'Da li nudite virtuelne konsultacije?',
+    answer: 'Da, nudimo virtuelne konsultacije putem video poziva za klijente koji ne mogu da dođu lično. To uključuje detaljnu diskusiju i pregled prostora putem video snimaka.'
+  }
+]
+
+// Team Members
+export const TEAM_MEMBERS = [
+  {
+    name: 'Ana Petrović',
+    role: 'Glavni dizajner',
+    description: 'Sa više od 15 godina iskustva u dizajnu enterijera, Ana vodi naš tim u kreiranju prostora koji inspirišu.',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&q=80&fit=crop', // Professional woman portrait
+    specialty: 'Specijalizacija: Luksuzni stambeni prostori'
+  },
+  {
+    name: 'Marko Jovanović',
+    role: 'Arhitekta',
+    description: 'Marko donosi tehničku ekspertizu i inovativna rešenja u sve naše projekte.',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&q=80&fit=crop', // Professional man portrait
+    specialty: 'Specijalizacija: Komercijalni prostori'
+  },
+  {
+    name: 'Jelena Nikolić',
+    role: 'Dizajner enterijera',
+    description: 'Jelena je stručnjakinja za izbor materijala i boja, stvarajući harmonične ambijente.',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=1000&q=80&fit=crop', // Professional woman portrait
+    specialty: 'Specijalizacija: Kolorne sheme i materijali'
+  }
+]
+
 // SEO Metadata
 export const METADATA = {
   title: 'Dizajn Enterijera - Vaš prostor, naša priča',
