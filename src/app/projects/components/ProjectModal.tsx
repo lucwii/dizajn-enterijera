@@ -18,14 +18,14 @@ const backdropVariants = {
     opacity: 1,
     transition: {
       duration: 0.4,
-      ease: [0.4, 0, 0.2, 1]
+      ease: [0.4, 0, 0.2, 1] as const
     }
   },
   exit: {
     opacity: 0,
     transition: {
       duration: 0.3,
-      ease: [0.4, 0, 1, 1]
+      ease: [0.4, 0, 1, 1] as const
     }
   }
 }
@@ -44,7 +44,7 @@ const modalVariants = {
     rotateX: 0,
     transition: {
       duration: 0.5,
-      ease: [0.34, 1.56, 0.64, 1],
+      ease: [0.34, 1.56, 0.64, 1] as const,
       opacity: { duration: 0.3 }
     }
   },
@@ -54,7 +54,7 @@ const modalVariants = {
     y: 40,
     transition: {
       duration: 0.3,
-      ease: [0.4, 0, 1, 1]
+      ease: [0.4, 0, 1, 1] as const
     }
   }
 }

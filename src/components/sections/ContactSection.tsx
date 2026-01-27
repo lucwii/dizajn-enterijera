@@ -20,6 +20,7 @@ export default function ContactSection() {
               variant="primary"
               icon={<ArrowIcon />}
               className="bg-[#9b8573] hover:bg-[#8b7355]"
+              href="/zakazivanje"
             >
               {CONTACT.cta}
             </Button>

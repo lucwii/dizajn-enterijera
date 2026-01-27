@@ -142,7 +142,7 @@ export default function NavBar() {
                   {item.label}
                 </Link>
               ))}
-              <Button size="sm" icon={<ArrowIcon />}>
+              <Button size="sm" icon={<ArrowIcon />} href="/zakazivanje">
                 Zakažite konsultaciju
               </Button>
             </div>
@@ -235,7 +235,7 @@ export default function NavBar() {
 
                 {/* CTA Button */}
                 <motion.div variants={itemVariants} className="mt-6">
-                  <Link href="/contact" onClick={toggleMobileMenu}>
+                  <Link href="/zakazivanje" onClick={toggleMobileMenu}>
                     <Button
                       size="md"
                       className="w-full justify-center text-base py-4"

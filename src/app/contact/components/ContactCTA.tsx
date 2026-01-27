@@ -43,15 +43,14 @@ export default function ContactCTA() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
-            <a href="mailto:info@enterijerdizajn.com">
-              <Button
+            <Button
                 variant="secondary"
                 size="lg"
                 className="bg-white text-[#9b8573] hover:bg-[#f0ebe6] border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                href="/zakazivanje"
               >
                 Zakažite konsultaciju
               </Button>
-            </a>
             <a href="tel:+381123456789">
               <Button
                 variant="ghost"

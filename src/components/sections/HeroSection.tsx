@@ -35,7 +35,7 @@ export default function HeroSection() {
 
             <FadeIn delay={0.8}>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" icon={<ArrowIcon />}>
+                <Button size="lg" icon={<ArrowIcon />} href="/zakazivanje">
                   {HERO.cta.primary}
                 </Button>
                 <Button size="lg" variant="secondary" href="/projects">

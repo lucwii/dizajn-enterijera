@@ -181,3 +181,102 @@ export const METADATA = {
   description: 'Kreiramo jedinstvene enterijere koji odražavaju vašu ličnost i stil života. Od koncepta do realizacije, sa više od 10 godina iskustva.',
   keywords: ['dizajn enterijera', 'enterijer', 'dizajn', 'nameštaj', 'renoviranje', 'kuhinje', 'kupatila', 'dnevne sobe']
 }
+
+// Consultation Page
+export const CONSULTATION_HERO = {
+  badge: 'Besplatna konsultacija',
+  title: {
+    line1: 'Zakažite',
+    line2: 'konsultaciju'
+  },
+  subtitle: 'Prvi korak ka prostoru iz snova. Podelite nam svoju viziju i zajedno ćemo je pretvoriti u stvarnost.',
+  image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&h=1080&q=80&fit=crop'
+}
+
+export const CONSULTATION_SERVICES = [
+  {
+    id: 'interior-design',
+    name: 'Dizajn enterijera',
+    description: 'Kompletna usluga dizajna sa 3D vizualizacijama, tehničkim planovima i nadzorom realizacije.',
+    icon: 'brush',
+    features: ['3D vizualizacije', 'Tehnički crteži', 'Nadzor realizacije']
+  },
+  {
+    id: 'consultation',
+    name: 'Konsultacija',
+    description: 'Jednosatni razgovor sa našim dizajnerom za savete i smernice za vaš projekat.',
+    icon: 'home',
+    features: ['60 min razgovor', 'Personalizovani saveti', 'Pisani izveštaj']
+  },
+  {
+    id: 'renovation',
+    name: 'Kompletna renovacija',
+    description: 'Od ideje do ključeva - upravljamo celokupnim procesom renoviranja vašeg prostora.',
+    icon: 'building',
+    features: ['Upravljanje projektom', 'Koordinacija majstora', 'Finalna predaja']
+  }
+]
+
+export const CONSULTATION_PROCESS = [
+  {
+    number: '01',
+    title: 'Primamo vaš zahtev',
+    description: 'Vaša poruka stiže direktno našem timu. Pregledamo je i pripremamo se za razgovor.',
+    timeframe: 'U roku od 24h'
+  },
+  {
+    number: '02',
+    title: 'Kontaktiramo vas',
+    description: 'Javljamo se telefonom ili emailom da dogovorimo termin za konsultaciju.',
+    timeframe: '1-2 radna dana'
+  },
+  {
+    number: '03',
+    title: 'Besplatna konsultacija',
+    description: 'Upoznajemo se sa vašom vizijom, potrebama i mogućnostima prostora.',
+    timeframe: '30-60 minuta'
+  },
+  {
+    number: '04',
+    title: 'Personalizovani predlog',
+    description: 'Pripremamo detaljan predlog saradnje sa rokovima i budžetom.',
+    timeframe: '3-5 radnih dana'
+  }
+]
+
+export const CONSULTATION_FAQ = [
+  {
+    question: 'Koliko košta inicijalna konsultacija?',
+    answer: 'Inicijalna konsultacija je besplatna i traje oko 30 minuta. Tokom nje upoznajemo se sa vašim potrebama i predstavljamo naš pristup.'
+  },
+  {
+    question: 'Koliko traje proces od konsultacije do početka rada?',
+    answer: 'Nakon inicijalne konsultacije, pripremamo predlog u roku od 3-5 radnih dana. Po prihvatanju, rad počinje u dogovorenom terminu.'
+  },
+  {
+    question: 'Da li nudite virtuelne konsultacije?',
+    answer: 'Da, nudimo konsultacije putem video poziva za klijente koji nisu u mogućnosti da nas posete lično.'
+  },
+  {
+    question: 'Šta treba da pripremim za konsultaciju?',
+    answer: 'Pripremite fotografije prostora, okvirne dimenzije, inspiracije (Pinterest, magazini) i ideju o budžetu. Sve ostalo ćemo zajedno definisati.'
+  }
+]
+
+export const TESTIMONIALS = [
+  {
+    quote: 'Od prvog razgovora do finalne realizacije, svaki korak je bio profesionalan i inspirativan. Naš dom sada izgleda kao iz magazina.',
+    author: 'Marija i Petar Nikolić',
+    project: 'Stan u Beogradu, 85m²'
+  },
+  {
+    quote: 'Konsultacija mi je pomogla da razumem šta je zaista moguće sa mojim prostorom. Preporuka svima koji žele promenu.',
+    author: 'Ana Jovanović',
+    project: 'Konsultacija za kuhinju'
+  },
+  {
+    quote: 'Renoviranje stana je bilo bezbolno iskustvo zahvaljujući ovom timu. Sve je završeno na vreme i iznad očekivanja.',
+    author: 'Stefan Marković',
+    project: 'Kompletna renovacija, 120m²'
+  }
+]
