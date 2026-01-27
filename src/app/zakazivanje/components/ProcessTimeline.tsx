@@ -47,6 +47,16 @@ export default function ProcessTimeline() {
                     relative md:grid md:grid-cols-2 md:gap-12 items-center
                     ${index !== CONSULTATION_PROCESS.length - 1 ? 'md:pb-20' : ''}
                   `}>
+                    {/* Mobile Icon - positioned outside the card */}
+                    <div className="md:hidden flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-full bg-[#9b8573] flex items-center justify-center text-white shadow-md shrink-0">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <div className="px-3 py-1 bg-[#9b8573]/10 text-[#9b8573] text-sm font-medium rounded-sm">
+                        {step.number}
+                      </div>
+                    </div>
+
                     {/* Content - Alternating sides */}
                     <motion.div
                       className={`
@@ -56,12 +66,12 @@ export default function ProcessTimeline() {
                       whileHover={{ y: -4, boxShadow: '0 20px 40px rgba(155, 133, 115, 0.1)' }}
                       transition={{ duration: 0.3 }}
                     >
-                      {/* Number badge */}
-                      <div className="absolute -top-4 left-6 px-4 py-1 bg-[#9b8573] text-white text-sm font-medium rounded-sm">
+                      {/* Number badge - desktop only */}
+                      <div className="hidden md:block absolute -top-4 left-6 px-4 py-1 bg-[#9b8573] text-white text-sm font-medium rounded-sm">
                         {step.number}
                       </div>
 
-                      <div className="pt-4">
+                      <div className="md:pt-4">
                         <h3 className="text-2xl md:text-3xl font-light text-[#2d2d2d] mb-3">
                           {step.title}
                         </h3>
@@ -75,7 +85,7 @@ export default function ProcessTimeline() {
                       </div>
                     </motion.div>
 
-                    {/* Icon - Center */}
+                    {/* Icon - Center (Desktop) */}
                     <div className={`
                       hidden md:flex items-center justify-center
                       ${isEven ? 'md:order-2' : 'md:order-1'}
@@ -95,13 +105,6 @@ export default function ProcessTimeline() {
                           absolute top-1/2 -translate-y-1/2 h-px w-12 bg-[#9b8573]/20
                           ${isEven ? 'left-full ml-2' : 'right-full mr-2'}
                         `} />
-                      </div>
-                    </div>
-
-                    {/* Mobile Icon */}
-                    <div className="md:hidden absolute -left-3 top-8">
-                      <div className="w-10 h-10 rounded-full bg-[#9b8573] flex items-center justify-center text-white shadow-md">
-                        <Icon className="w-5 h-5" />
                       </div>
                     </div>
                   </div>

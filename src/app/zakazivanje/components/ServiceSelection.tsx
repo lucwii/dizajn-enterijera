@@ -32,9 +32,8 @@ export default function ServiceSelection({ selectedService, onSelectService }: S
         </FadeIn>
 
         {/* Service Cards */}
-        <FadeIn stagger staggerDelay={0.15}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {CONSULTATION_SERVICES.map((service, index) => {
+        <FadeIn stagger staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {CONSULTATION_SERVICES.map((service, index) => {
               const Icon = iconMap[service.icon] || HomeIcon
               const isSelected = selectedService === service.id
 
@@ -118,7 +117,6 @@ export default function ServiceSelection({ selectedService, onSelectService }: S
                 </motion.div>
               )
             })}
-          </div>
         </FadeIn>
 
         {/* Selection Prompt */}
