@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NAV_ITEMS } from '@/lib/constants'
-import Button from './ui/Button'
-import { MenuIcon, ArrowIcon } from './icons'
+import { ArrowIcon } from './icons'
 
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -36,40 +35,27 @@ export default function NavBar() {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
-  // Animation variants - Slide from right
-  const overlayVariants = {
-    closed: {
-      opacity: 0,
-      transition: {
-        duration: 0.3,
-        ease: [0.4, 0, 0.2, 1] as const
-      }
-    },
-    open: {
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: [0.4, 0, 0.2, 1] as const
-      }
-    }
-  }
+  // Smooth easing curves
+  const smoothEase = [0.32, 0.72, 0, 1] as const
+  const smoothEaseIn = [0.4, 0, 1, 1] as const
 
-  const panelVariants = {
+  // Animation variants
+  const menuVariants = {
     closed: {
-      x: '100%',
+      clipPath: 'circle(0% at calc(100% - 40px) 40px)',
       transition: {
         duration: 0.5,
-        ease: [0.4, 0, 0.2, 1] as const,
+        ease: smoothEaseIn as unknown as [number, number, number, number],
         when: "afterChildren" as const
       }
     },
     open: {
-      x: 0,
+      clipPath: 'circle(150% at calc(100% - 40px) 40px)',
       transition: {
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1] as const,
+        duration: 0.7,
+        ease: smoothEase as unknown as [number, number, number, number],
         when: "beforeChildren" as const,
-        staggerChildren: 0.07,
+        staggerChildren: 0.05,
         delayChildren: 0.2
       }
     }
@@ -78,46 +64,40 @@ export default function NavBar() {
   const itemVariants = {
     closed: {
       opacity: 0,
-      x: 50,
+      y: 20,
       transition: {
         duration: 0.2,
-        ease: [0.4, 0, 0.2, 1] as const
+        ease: smoothEaseIn as unknown as [number, number, number, number]
       }
     },
     open: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1] as const
+        duration: 0.4,
+        ease: smoothEase as unknown as [number, number, number, number]
       }
     }
   }
 
-  const decorativeLineVariants = {
-    closed: {
-      scaleY: 0,
+  const lineVariants = {
+    closed: { scaleX: 0 },
+    open: (i: number) => ({
+      scaleX: 1,
       transition: {
-        duration: 0.3,
-        ease: [0.4, 0, 0.2, 1] as const
+        duration: 0.5,
+        ease: smoothEase as unknown as [number, number, number, number],
+        delay: 0.3 + i * 0.05
       }
-    },
-    open: {
-      scaleY: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as const,
-        delay: 0.3
-      }
-    }
+    })
   }
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm'
+            ? 'bg-[#faf8f6]/95 backdrop-blur-md shadow-[0_1px_0_0_rgba(155,133,115,0.1)]'
             : 'bg-transparent'
         }`}
       >
@@ -126,7 +106,10 @@ export default function NavBar() {
             {/* Logo */}
             <Link
               href="/"
-              className="text-xl md:text-2xl font-light text-[#2d2d2d] tracking-tight hover:text-[#9b8573] transition-colors"
+              className={`text-xl md:text-2xl font-light tracking-tight transition-colors duration-300 ${
+                isMobileMenuOpen ? 'text-[#faf8f6]' : 'text-[#2d2d2d] hover:text-[#9b8573]'
+              }`}
+              style={{ zIndex: 60, position: 'relative' }}
             >
               Dizajn Enterijera
             </Link>
@@ -142,134 +125,169 @@ export default function NavBar() {
                   {item.label}
                 </Link>
               ))}
-              <Button size="sm" icon={<ArrowIcon />} href="/zakazivanje">
+              <Link
+                href="/zakazivanje"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#9b8573] text-white text-sm font-medium rounded-full hover:bg-[#8b7355] transition-all duration-300 hover:shadow-lg hover:shadow-[#9b8573]/20"
+              >
                 Zakažite konsultaciju
-              </Button>
+                <ArrowIcon className="w-4 h-4" />
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="lg:hidden relative z-50 p-2 text-[#2d2d2d] hover:text-[#9b8573] transition-colors"
+              className="lg:hidden relative z-[60] w-10 h-10 flex items-center justify-center"
               aria-label="Toggle menu"
             >
-              <MenuIcon isOpen={isMobileMenuOpen} />
+              <div className="relative w-6 h-4 flex flex-col justify-between">
+                <motion.span
+                  className={`block h-[1.5px] rounded-full origin-center transition-colors duration-300 ${
+                    isMobileMenuOpen ? 'bg-[#faf8f6]' : 'bg-[#2d2d2d]'
+                  }`}
+                  animate={{
+                    rotate: isMobileMenuOpen ? 45 : 0,
+                    y: isMobileMenuOpen ? 7 : 0,
+                    width: isMobileMenuOpen ? 24 : 24
+                  }}
+                  transition={{ duration: 0.3, ease: smoothEase }}
+                />
+                <motion.span
+                  className={`block h-[1.5px] rounded-full transition-colors duration-300 ${
+                    isMobileMenuOpen ? 'bg-[#faf8f6]' : 'bg-[#2d2d2d]'
+                  }`}
+                  animate={{
+                    opacity: isMobileMenuOpen ? 0 : 1,
+                    x: isMobileMenuOpen ? 10 : 0
+                  }}
+                  transition={{ duration: 0.2, ease: smoothEase }}
+                />
+                <motion.span
+                  className={`block h-[1.5px] rounded-full origin-center transition-colors duration-300 ${
+                    isMobileMenuOpen ? 'bg-[#faf8f6]' : 'bg-[#2d2d2d]'
+                  }`}
+                  animate={{
+                    rotate: isMobileMenuOpen ? -45 : 0,
+                    y: isMobileMenuOpen ? -7 : 0,
+                    width: isMobileMenuOpen ? 24 : 16
+                  }}
+                  transition={{ duration: 0.3, ease: smoothEase }}
+                />
+              </div>
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu - Slide from Right */}
+      {/* Mobile Menu - Full Screen */}
       <AnimatePresence mode="wait">
         {isMobileMenuOpen && (
-          <>
-            {/* Dark overlay backdrop */}
-            <motion.div
-              className="fixed inset-0 z-40 lg:hidden bg-black/50"
-              variants={overlayVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              onClick={toggleMobileMenu}
-            />
+          <motion.div
+            className="fixed inset-0 z-40 lg:hidden bg-gradient-to-br from-[#2d2d2d] via-[#3d3d3d] to-[#2d2d2d]"
+            variants={menuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+          >
+            {/* Subtle pattern overlay */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, #faf8f6 1px, transparent 0)`,
+              backgroundSize: '32px 32px'
+            }} />
 
-            {/* Sliding Panel - Floating */}
-            <motion.div
-              className="fixed top-4 right-4 bottom-4 z-40 lg:hidden w-[calc(100%-2rem)] max-w-sm bg-white shadow-2xl rounded-2xl overflow-hidden"
-              variants={panelVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-            >
-              {/* Decorative vertical line */}
-              <motion.div
-                className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#9b8573]/30 to-transparent"
-                variants={decorativeLineVariants}
-                style={{ originY: 0 }}
-              />
+            {/* Accent gradient */}
+            <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-gradient-to-bl from-[#9b8573]/10 to-transparent" />
 
-              {/* Menu Content */}
-              <div className="h-full flex flex-col pt-24 pb-8 px-8">
-                {/* Navigation Links */}
-                <nav className="flex-1 flex flex-col justify-center space-y-1">
-                  {NAV_ITEMS.map((item, index) => (
-                    <motion.div
-                      key={item.href}
-                      variants={itemVariants}
-                      className="overflow-hidden"
+            {/* Menu Content */}
+            <div className="h-full flex flex-col justify-center px-8 sm:px-12">
+              {/* Navigation Links */}
+              <nav className="space-y-1">
+                {NAV_ITEMS.map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    variants={itemVariants}
+                    className="overflow-hidden"
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={toggleMobileMenu}
+                      className="group relative flex items-center py-3 sm:py-4"
                     >
-                      <Link
-                        href={item.href}
-                        onClick={toggleMobileMenu}
-                        className="group relative flex items-center py-5"
+                      {/* Number indicator */}
+                      <span className="text-[10px] sm:text-xs text-[#9b8573] font-light tracking-[0.2em] mr-4 sm:mr-6 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+
+                      {/* Link text */}
+                      <span className="text-2xl sm:text-3xl md:text-4xl font-light text-[#faf8f6] tracking-tight group-hover:text-[#9b8573] transition-all duration-300">
+                        {item.label}
+                      </span>
+
+                      {/* Arrow on hover */}
+                      <motion.span
+                        className="ml-auto text-[#9b8573]"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileHover={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        {/* Number indicator */}
-                        <span className="text-xs text-[#9b8573]/60 font-light tracking-wider mr-4 min-w-[24px]">
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
+                        <ArrowIcon className="w-5 h-5 sm:w-6 sm:h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.span>
+                    </Link>
 
-                        {/* Link text */}
-                        <span className="text-3xl sm:text-4xl font-light text-[#2d2d2d] tracking-tight group-hover:text-[#9b8573] transition-all duration-300 group-hover:translate-x-2">
-                          {item.label}
-                        </span>
+                    {/* Separator line */}
+                    {index < NAV_ITEMS.length - 1 && (
+                      <motion.div
+                        className="h-px bg-gradient-to-r from-[#faf8f6]/10 via-[#9b8573]/20 to-transparent"
+                        variants={lineVariants}
+                        custom={index}
+                        style={{ originX: 0 }}
+                      />
+                    )}
+                  </motion.div>
+                ))}
+              </nav>
 
-                        {/* Arrow on hover */}
-                        <span className="ml-auto opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                          <ArrowIcon className="w-6 h-6 text-[#9b8573]" />
-                        </span>
-                      </Link>
-
-                      {/* Separator line */}
-                      {index < NAV_ITEMS.length - 1 && (
-                        <motion.div
-                          className="h-px bg-gradient-to-r from-[#2d2d2d]/10 to-transparent ml-10"
-                          initial={{ scaleX: 0, opacity: 0 }}
-                          animate={{ scaleX: 1, opacity: 1 }}
-                          transition={{ delay: 0.4 + index * 0.05, duration: 0.6 }}
-                          style={{ originX: 0 }}
-                        />
-                      )}
-                    </motion.div>
-                  ))}
-                </nav>
-
-                {/* CTA Button */}
-                <motion.div variants={itemVariants} className="mt-6">
-                  <Link href="/zakazivanje" onClick={toggleMobileMenu}>
-                    <Button
-                      size="md"
-                      className="w-full justify-center text-base py-4"
-                      icon={<ArrowIcon />}
-                    >
-                      Zakažite konsultaciju
-                    </Button>
-                  </Link>
-                </motion.div>
-
-                {/* Contact Info */}
-                <motion.div
-                  variants={itemVariants}
-                  className="mt-6 pt-6 border-t border-[#2d2d2d]/10"
+              {/* CTA Button */}
+              <motion.div variants={itemVariants} className="mt-10 sm:mt-12">
+                <Link
+                  href="/zakazivanje"
+                  onClick={toggleMobileMenu}
+                  className="inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-[#9b8573] text-[#faf8f6] text-sm sm:text-base font-medium rounded-full hover:bg-[#8b7355] transition-all duration-300 hover:shadow-xl hover:shadow-[#9b8573]/30"
                 >
-                  <p className="text-xs uppercase tracking-widest text-[#9b8573] font-medium mb-3">
-                    Kontakt
-                  </p>
+                  Zakažite konsultaciju
+                  <ArrowIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                </Link>
+              </motion.div>
+
+              {/* Contact Info */}
+              <motion.div
+                variants={itemVariants}
+                className="mt-10 sm:mt-12 pt-8 border-t border-[#faf8f6]/10"
+              >
+                <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#9b8573] font-medium mb-4">
+                  Kontakt
+                </p>
+                <div className="space-y-2">
                   <a
                     href="mailto:info@dizajn-enterijera.com"
-                    className="block text-base text-[#6b6b6b] hover:text-[#9b8573] transition-colors mb-2"
+                    className="block text-sm sm:text-base text-[#faf8f6]/70 hover:text-[#9b8573] transition-colors duration-300"
                   >
                     info@dizajn-enterijera.com
                   </a>
                   <a
                     href="tel:+381601234567"
-                    className="block text-base text-[#6b6b6b] hover:text-[#9b8573] transition-colors"
+                    className="block text-sm sm:text-base text-[#faf8f6]/70 hover:text-[#9b8573] transition-colors duration-300"
                   >
                     +381 60 123 4567
                   </a>
-                </motion.div>
-              </div>
-            </motion.div>
-          </>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Decorative corner accent */}
+            <div className="absolute bottom-8 right-8 w-24 h-24 border border-[#9b8573]/20 rounded-full" />
+            <div className="absolute bottom-12 right-12 w-16 h-16 border border-[#9b8573]/10 rounded-full" />
+          </motion.div>
         )}
       </AnimatePresence>
     </>
