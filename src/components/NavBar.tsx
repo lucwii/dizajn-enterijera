@@ -102,14 +102,14 @@ export default function NavBar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+          <div className="flex items-center justify-between lg:justify-between h-20 relative">
+            {/* Logo - centered on mobile, left on desktop */}
             <Link
               href="/"
-              className={`text-xl md:text-2xl font-light tracking-tight transition-colors duration-300 ${
+              className={`text-xl md:text-2xl font-light tracking-tight transition-colors duration-300 absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 ${
                 isMobileMenuOpen ? 'text-[#faf8f6]' : 'text-[#2d2d2d] hover:text-[#9b8573]'
               }`}
-              style={{ zIndex: 60, position: 'relative' }}
+              style={{ zIndex: 60 }}
             >
               Dizajn Enterijera
             </Link>
@@ -134,6 +134,9 @@ export default function NavBar() {
               </Link>
             </div>
 
+            {/* Spacer for mobile to balance the layout */}
+            <div className="w-10 lg:hidden" />
+
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
@@ -150,7 +153,7 @@ export default function NavBar() {
                     y: isMobileMenuOpen ? 7 : 0,
                     width: isMobileMenuOpen ? 24 : 24
                   }}
-                  transition={{ duration: 0.3, ease: smoothEase }}
+                  transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
                 />
                 <motion.span
                   className={`block h-[1.5px] rounded-full transition-colors duration-300 ${
@@ -160,7 +163,7 @@ export default function NavBar() {
                     opacity: isMobileMenuOpen ? 0 : 1,
                     x: isMobileMenuOpen ? 10 : 0
                   }}
-                  transition={{ duration: 0.2, ease: smoothEase }}
+                  transition={{ duration: 0.2, ease: [0.32, 0.72, 0, 1] }}
                 />
                 <motion.span
                   className={`block h-[1.5px] rounded-full origin-center transition-colors duration-300 ${
@@ -171,7 +174,7 @@ export default function NavBar() {
                     y: isMobileMenuOpen ? -7 : 0,
                     width: isMobileMenuOpen ? 24 : 16
                   }}
-                  transition={{ duration: 0.3, ease: smoothEase }}
+                  transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
                 />
               </div>
             </button>
