@@ -202,7 +202,7 @@ export default function NavBar() {
             <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-gradient-to-bl from-[#9b8573]/10 to-transparent" />
 
             {/* Menu Content */}
-            <div className="h-full flex flex-col justify-center px-8 sm:px-12">
+            <div className="h-full flex flex-col justify-start px-8 sm:px-12 pt-24">
               {/* Navigation Links */}
               <nav className="space-y-1">
                 {NAV_ITEMS.map((item, index) => (
