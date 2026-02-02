@@ -16,8 +16,8 @@ export async function POST(req: NextRequest) {
         }
 
         const { data, error } = await resend.emails.send({
-      from: 'Enterijer Dizajn <onboarding@resend.dev>', // Za testiranje
-      to: 'tvoj-email@example.com', // STAVI TVOJ EMAIL OVDE!!!
+      from: 'Enterijer Dizajn <onboarding@resend.dev>', 
+      to: 'milanoviclukaa23@gmail.com', 
       subject: `Novi zahtev za konsultaciju: ${service}`,
       html: `
         <!DOCTYPE html>
