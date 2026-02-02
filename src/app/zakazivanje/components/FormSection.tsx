@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, User, Mail, Phone, ArrowLeft, Sparkles } from 'lucide-react'
+import { Send, User, Mail, Phone, ArrowLeft, Sparkles, CheckCircle, XCircle, Loader2 } from 'lucide-react'
 import { FadeIn, ParallaxImage } from '@/components/animations'
 import { SectionHeading } from '@/components/ui'
 import Button from '@/components/ui/Button'
 import { CONSULTATION_SERVICES } from '@/lib/constants'
+import { useContactForm } from './useContactForm'
 
 interface FormSectionProps {
   selectedService: string | null
@@ -15,32 +15,19 @@ interface FormSectionProps {
 }
 
 export default function FormSection({ selectedService, onChangeService }: FormSectionProps) {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    description: ''
-  })
-  const [focusedField, setFocusedField] = useState<string | null>(null)
+  const {
+    formData,
+    errors,
+    focusedField,
+    setFocusedField,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+    isSuccess,
+    isError
+  } = useContactForm(selectedService)
 
   const selectedServiceData = CONSULTATION_SERVICES.find(s => s.id === selectedService)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Placeholder - just console.log for now
-    console.log('Form submitted:', {
-      service: selectedService,
-      ...formData
-    })
-    alert('Forma je uspešno poslata! (Placeholder - logika za slanje emaila biće dodata)')
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
 
   const inputClasses = (fieldName: string) => `
     w-full px-6 py-5 bg-white/60 backdrop-blur-sm
@@ -75,7 +62,7 @@ export default function FormSection({ selectedService, onChangeService }: FormSe
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Form */}
           <FadeIn delay={0.3}>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={(e) => handleSubmit(e, selectedServiceData?.name || '')} className="space-y-6">
               {/* Selected Service Badge */}
               <AnimatePresence mode="wait">
                 {selectedServiceData && (
@@ -117,6 +104,7 @@ export default function FormSection({ selectedService, onChangeService }: FormSe
                   required
                   className={`${inputClasses('name')} pl-14`}
                 />
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
               </div>
 
               {/* Email Input */}
@@ -135,6 +123,7 @@ export default function FormSection({ selectedService, onChangeService }: FormSe
                   required
                   className={`${inputClasses('email')} pl-14`}
                 />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
               {/* Phone Input */}
@@ -172,6 +161,7 @@ export default function FormSection({ selectedService, onChangeService }: FormSe
                 <div className="absolute bottom-4 right-4 text-xs text-[#6b6b6b]/50">
                   {formData.description.length} karaktera
                 </div>
+                {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
               </div>
 
               {/* Submit Button */}
@@ -180,11 +170,37 @@ export default function FormSection({ selectedService, onChangeService }: FormSe
                   type="submit"
                   size="lg"
                   className="w-full justify-center"
-                  icon={<Send className="w-5 h-5" />}
-                  disabled={!selectedService}
+                  icon={isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                  disabled={!selectedService || isSubmitting}
                 >
-                  Pošaljite zahtev
+                  {isSubmitting ? 'Slanje...' : 'Pošaljite zahtev'}
                 </Button>
+
+                {/* Status messages */}
+                <AnimatePresence>
+                  {isSuccess && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-2 mt-4 p-4 bg-green-50 text-green-700 rounded-sm"
+                    >
+                      <CheckCircle className="w-5 h-5" />
+                      <span>Zahtev je uspešno poslat! Javićemo vam se uskoro.</span>
+                    </motion.div>
+                  )}
+                  {isError && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-2 mt-4 p-4 bg-red-50 text-red-700 rounded-sm"
+                    >
+                      <XCircle className="w-5 h-5" />
+                      <span>Došlo je do greške. Pokušajte ponovo.</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Trust indicators */}
                 <div className="flex items-center justify-center gap-6 mt-6 text-sm text-[#6b6b6b]">

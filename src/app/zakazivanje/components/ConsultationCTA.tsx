@@ -66,12 +66,7 @@ export default function ConsultationCTA() {
                   href={method.href}
                   whileHover={{ y: -4, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="
-                    flex items-center gap-4 px-8 py-5 rounded-sm
-                    bg-white/10 backdrop-blur-sm border border-white/20
-                    hover:bg-white/20 transition-all duration-300
-                    group w-full sm:w-auto
-                  "
+                  className="flex items-center gap-4 px-8 py-5 rounded-sm bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 group w-full sm:w-auto"
                 >
                   <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                     <method.icon className="w-5 h-5 text-white" />
